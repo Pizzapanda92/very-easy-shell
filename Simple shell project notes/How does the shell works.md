@@ -10,8 +10,6 @@ Processes can create other processes which will in turn become its children and 
 
 To visualize the processes in the shell type the command ps or man ps first. 
 
-
-
 #### How to manipulate the environment of the current process
 
 The environnement of a process is a collection of environment variables. Those environment variable are dynamic variable the influence the behavior of a program. Every  process is associated with its set of environment variable. Some environment variable are exported by its parent process, and the process can ads its own variable to the list. Because of this it is important to understand the two categories of environment variables. 
@@ -81,8 +79,29 @@ Abstractly a system call is a way for the program to transition from user space 
  
 #### How to create processes
 
+Processes can be created by using fork although first it would be nice to learn about [[Processes]]
 
-- What are the three prototypes of `main`
+Fork will copy the address of a process in the memory and create a child process. This process will have its own PID. If the fork is successful it will return 0. 
+
+#### What are the three prototypes of `main`
+
+We classify the main prototype depending on the arguments it takes. 
+
+**No argument**
+```C
+int main (void)
+```
+**Command line argument**
+```C
+int main(int argc, char *argv[])
+```
+
+**Command line argument and environment argument**
+```C
+int main(int argc, char *argv, char *envp)
+```
+
+
 - How does the shell use the `PATH` to find the programs
 - How to execute another program with the `execve` system call
 - How to suspend the execution of a process until one of its children terminates
