@@ -17,7 +17,7 @@ int main(void)
             break;
         }
 
-        printf("Vous avez tapé : %s", line);
+        printf("%s", line);
     }
 
     free(line);
