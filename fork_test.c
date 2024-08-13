@@ -6,7 +6,7 @@ int create_child_and_execute()
 {
     int i;
     pid_t pid_fils;
-    char *argv[] = {"/bin/ls", "-l", "/tmp", NULL};
+    char *argv[] = {"/bin/ls", "-l", "/very-easy-shell", NULL};
     extern char **environ; 
 
     for (i = 0; i < 5; i++)
