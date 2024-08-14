@@ -6,12 +6,13 @@ int main(void)
 	char *cmd_prompt = NULL;
 	size_t n = 70;
 	size_t *max_len_cmd = &n;
-	int toknum = 1;
-	char *args[n];
-	char *token = strtok(cmd_prompt, delim);
-	args[0] = "-c";
+	int toknum = 0;
 	const char *delim = " ";
-	pid_t pid_child;
+	char *args[n];
+	char *token;
+	char *prefix = "/bin/";
+	
+//	pid_t pid_child;
 
 	/* prints prompt symbole*/
 	printf("$ ");
@@ -24,7 +25,9 @@ int main(void)
 	}
 
 
+
 	/*tokenize cmd_promt*/
+	token = strtok(cmd_prompt, delim);
 	while (token != NULL)
 	{
 		args[toknum] = token;
@@ -33,9 +36,12 @@ int main(void)
 
 	}
 
+	char pathname[20];
+	snprintf(pathname, sizeof(pathname), "%s%s", prefix, args[0]);
+	printf("%s",pathname);
 
-	char *pathname = args;
 
+/*
 	//fork
 	pid_child = fork()
 
@@ -47,16 +53,19 @@ int main(void)
 
 	if (pid_child == 0)
 	{
-		execve(pathname, args, NULL); 
-		printf("print from cmd prompt %s\n", cmd_prompt);
-		return (1);
+		if (execve(pathname, args, NULL) == -1)
+	       	{
+			perror("execve failed");
+			return (1);
+		}
 	}
 	else
 	{
-		whait (null)
+		wait (null)
 	}	
 
 	free(cmd_prompt);
+	*/
 	return 0;
 }
 
