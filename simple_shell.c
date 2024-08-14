@@ -11,7 +11,8 @@ int main(void)
 	char *token = strtok(cmd_prompt, delim);
 	args[0] = "-c";
 	const char *delim = " ";
-	
+	pid_t pid_child;
+
 	/* prints prompt symbole*/
 	printf("$ ");
 
@@ -31,14 +32,30 @@ int main(void)
 		toknum++;
 
 	}
-	
+
 
 	char *pathname = args;
 
 	//fork
-	
-	execve(pathname, args, NULL); 
-	printf("print from cmd prompt %s\n", cmd_prompt);
+	pid_child = fork()
+
+		if (pid_child == -1)
+		{	
+			perror ("child dont work")
+				return(1)
+		}
+
+	if (pid_child == 0)
+	{
+		execve(pathname, args, NULL); 
+		printf("print from cmd prompt %s\n", cmd_prompt);
+		return (1);
+	}
+	else
+	{
+		whait (null)
+	}	
+
 	free(cmd_prompt);
 	return 0;
 }
